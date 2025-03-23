@@ -1,0 +1,57 @@
+﻿@model IEnumerable<recruitment.Models.UserApplication>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CV.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobListing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CV.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobListing.Title)
+                </td>
+                <td>
+                    @{
+                        var status = "";
+                        switch (item.ApplicationStatus.ApplicationStatusId)
+                        {
+                            case 1:
+                                status = "Sent";
+                                break;
+                            case 2:
+                                status = "Already accepted";
+                                break;
+                            case 3:
+                                status = "Was rejected";
+                                break;
+                            default:
+                                status = "Unknown";
+                                break;
+                        }
+                    }
+                    @status
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<recruitment.Models.CV>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success mb-3">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Experience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialization)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SelfDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Experience)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialization)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SelfDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CVId" class="btn btn-primary mr-2 mb-2">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.CVId" class="btn btn-secondary mr-2 mb-2">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.CVId" class="btn btn-danger mb-2">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

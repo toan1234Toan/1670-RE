@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - recruitment</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/recruitment.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">recruitment</a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="nav-link" asp-controller="Admins" asp-action="Index">Admins</a>
+                }
+                @if (User.IsInRole("Manager"))
+                {
+                    <a class="nav-link" asp-controller="UserApplications" asp-action="Index">Application Jobs</a>
+                }
+                <a class="nav-link" asp-controller="UserApplications" asp-action="MyApplication">My Application </a>
+                <a class="nav-link" asp-controller="JobListings" asp-action="Index">Jobs</a>
+                <a class="nav-link" asp-controller="CVs" asp-action="Index">CV</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <div class="ms-auto d-flex">
+                        <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Home" asp-action="Search">
+                            <div class="input-group">
+                                <input type="text" name="searchTitle" class="form-control" placeholder="Search job" aria-label="Search" aria-describedby="button-search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-success" type="submit" id="button-search">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - recruitment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

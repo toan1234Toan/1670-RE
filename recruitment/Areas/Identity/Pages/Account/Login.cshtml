@@ -1,0 +1,99 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- Phần nội dung giới thiệu hoặc thông tin bên cạnh form đăng nhập -->
+        <div class="intro-content">
+            <h3>Welcome to the login page</h3>
+            <p>Welcome to my recruitment page!</p>
+            <!-- Thay thế "placeholder-image.jpg" bằng đường dẫn hình ảnh thực tế của bạn -->
+            <img src="https://t3.ftcdn.net/jpg/04/03/89/26/360_F_403892685_LiSItbZXIrOz9z5gzYEgGanwZCxCZq9l.jpg" alt="Intro Image" class="img-fluid">
+            <!-- Các nội dung khác như widget mạng xã hội, liên kết, v.v... -->
+        </div>
+    </div>
+    <div class="col-md-6">
+        <!-- Bắt đầu form đăng nhập -->
+        <form id="account" method="post">
+            <h2 class="text-center">@ViewData["Title"]</h2>
+            <div class="form-group">
+                <label asp-for="Input.Email" class="form-label">Email</label>
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password" class="form-label">Password</label>
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input asp-for="Input.RememberMe" class="form-check-input" />
+                <label asp-for="Input.RememberMe" class="form-check-label">@Html.DisplayNameFor(m => m.Input.RememberMe)</label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary w-100">Log in</button>
+            </div>
+            <div class="form-group text-center">
+                <a asp-page="./ForgotPassword">Forgot your password?</a> |
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a> |
+                <a asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+            </div>
+        </form>
+        <!-- Kết thúc form đăng nhập -->
+    </div>
+</div>
+
+<style>
+    /* ... Style hiện tại của bạn ... */
+
+    /* Thêm style cho form đăng nhập */
+    #account {
+        padding: 30px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-left: 20px; /* Adjust this as necessary */
+    }
+
+        #account h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-check-label {
+        margin-left: .5rem;
+    }
+
+    .btn-primary {
+        background-color: #4a76a8;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #365880;
+        }
+
+    .form-control:focus {
+        border-color: #4a76a8;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(74, 118, 168, 0.6);
+    }
+
+    .text-danger {
+        color: #dc3545;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
